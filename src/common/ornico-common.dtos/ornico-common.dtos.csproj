@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>ornico-common.dtos</AssemblyName>
+    <RootNamespace>ornico.common.dtos</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="DTOs\Products\ProductUiModel.cs~RF2a58aae0.TMP" />
+    <None Remove="Vms\Accounts\AccountWithNewPasswordModification.cs~RF13beeab7.TMP" />
+    <None Remove="Vms\Devices\DeviceForActivationModel.cs~RFd9056f.TMP" />
+    <None Remove="Vms\Devices\DeviceForDeletionUiModel.cs~RF6c97ae.TMP" />
+    <None Remove="Vms\Employees\EmployeeForDeletionUiModel.cs~RF7809eb.TMP" />
+    <None Remove="Vms\Notifications\Class1.cs~RFc6c3c.TMP" />
+    <None Remove="Vms\Notifications\NotificationForDeletionUiModel.cs~RF822a05.TMP" />
+    <None Remove="Vms\Patients\PatientForModificationProvisioningModel.cs~RF517814.TMP" />
+    <None Remove="Vms\Roles\RoleUiModel.cs~RF2eac562b.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.1.1" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>ornico-common.infrastructure</AssemblyName>
+    <RootNamespace>ornico.common.infrastructure</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Exceptions\Api\**" />
+    <EmbeddedResource Remove="Exceptions\Api\**" />
+    <None Remove="Exceptions\Api\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Domain\IReadOnlyRepository.cs~RF29fd717b.TMP" />
+    <None Remove="Domain\IReadOnlyRepository.cs~RF29fdaee2.TMP" />
+    <None Remove="Exceptions\Domain\Patients\PatientDoesNotExistException.cs~RF71dfbb.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.1.1" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.1.5" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commons", "Commons", "{FAE8B85B-7A38-49FE-BAC2-52A65BAAC5CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{14E5ADE2-1753-4E19-9015-AEC6B8DB8C1F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ornico-common.dtos", "src\common\ornico-common.dtos\ornico-common.dtos.csproj", "{D6BBA865-B478-4576-9401-83551445C8CD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ornico-common.infrastructure", "src\common\ornico-common.infrastructure\ornico-common.infrastructure.csproj", "{1851670B-E333-46A8-AB19-9D51E40A1F9E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ornico-core.model", "src\core\ornico-core.model\ornico-core.model.csproj", "{56F0F25B-D881-4235-AFA7-3FCF7C25474B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ornico-core.contracts", "src\core\ornico-core.contracts\ornico-core.contracts.csproj", "{1EC1304D-E175-4561-A038-5E621652FB27}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6BBA865-B478-4576-9401-83551445C8CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6BBA865-B478-4576-9401-83551445C8CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6BBA865-B478-4576-9401-83551445C8CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6BBA865-B478-4576-9401-83551445C8CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1851670B-E333-46A8-AB19-9D51E40A1F9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1851670B-E333-46A8-AB19-9D51E40A1F9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1851670B-E333-46A8-AB19-9D51E40A1F9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1851670B-E333-46A8-AB19-9D51E40A1F9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56F0F25B-D881-4235-AFA7-3FCF7C25474B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56F0F25B-D881-4235-AFA7-3FCF7C25474B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56F0F25B-D881-4235-AFA7-3FCF7C25474B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56F0F25B-D881-4235-AFA7-3FCF7C25474B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EC1304D-E175-4561-A038-5E621652FB27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EC1304D-E175-4561-A038-5E621652FB27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EC1304D-E175-4561-A038-5E621652FB27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EC1304D-E175-4561-A038-5E621652FB27}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D6BBA865-B478-4576-9401-83551445C8CD} = {FAE8B85B-7A38-49FE-BAC2-52A65BAAC5CD}
+		{1851670B-E333-46A8-AB19-9D51E40A1F9E} = {FAE8B85B-7A38-49FE-BAC2-52A65BAAC5CD}
+		{56F0F25B-D881-4235-AFA7-3FCF7C25474B} = {14E5ADE2-1753-4E19-9015-AEC6B8DB8C1F}
+		{1EC1304D-E175-4561-A038-5E621652FB27} = {14E5ADE2-1753-4E19-9015-AEC6B8DB8C1F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {42AD2CBB-7113-4833-BA07-3544FCB20989}
+	EndGlobalSection
+EndGlobal

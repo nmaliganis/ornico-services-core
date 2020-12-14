@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>ornico-core.model</AssemblyName>
+    <RootNamespace>ornico.core.model</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Orders\EmployeeBusinessRules.cs~RF14bbf8f1.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\common\ornico-common.infrastructure\ornico-common.infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
