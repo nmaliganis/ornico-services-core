@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>ornico-core.repository</AssemblyName>
+    <RootNamespace>ornico.core.repository</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Repositories\DeviceRepository.cs~RF97dadcd.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentNHibernate" Version="3.1.0" />
+    <PackageReference Include="NHibernate" Version="5.3.5" />
+    <PackageReference Include="nhibernate.postgresql.json" Version="1.1.2" />
+    <PackageReference Include="Npgsql" Version="5.0.1.1" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\common\ornico-common.infrastructure\ornico-common.infrastructure.csproj" />
+    <ProjectReference Include="..\ornico-core.model\ornico-core.model.csproj" />
+  </ItemGroup>
+
+</Project>

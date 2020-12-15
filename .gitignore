@@ -1,1 +1,15 @@
 /.vs/ornico-services-core/DesignTimeBuild
+
+src/common/ornico-common.dtos/obj/
+
+src/core/ornico-core.services/obj/
+
+src/core/ornico-core.model/obj/
+
+src/core/ornico-core.repository/obj/
+
+src/core/ornico-core.contracts/obj/
+
+src/core/ornico-core.api/obj/
+
+src/common/ornico-common.infrastructure/obj/

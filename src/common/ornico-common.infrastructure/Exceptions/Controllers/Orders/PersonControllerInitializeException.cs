@@ -8,6 +8,6 @@ namespace ornico.common.infrastructure.Exceptions.Controllers.Orders
         {
         }
 
-        public override string Message => $" Person Controller initialization failed!";
+        public override string Message => $" Orders Controller initialization failed!";
     }
 }

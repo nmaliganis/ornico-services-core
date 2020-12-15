@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using ornico.common.dtos.DTOs.Bases;
 
-namespace magic.button.common.dtos.Vms.Devices
+namespace ornico.common.dtos.DTOs.Orders
 {
   public class DeviceCreationUiModel : IUiModel
   {

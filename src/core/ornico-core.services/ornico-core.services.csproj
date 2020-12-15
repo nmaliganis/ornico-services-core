@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>ornico-core.services</AssemblyName>
+    <RootNamespace>ornico.core.services</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="V1\UsersControllerDependencyBlock.cs~RF38d88c2.TMP" />
+    <None Remove="V1\UsersControllerDependencyBlock.cs~RF5a9e3e.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Serilog" Version="2.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ornico-core.contracts\ornico-core.contracts.csproj" />
+    <ProjectReference Include="..\ornico-core.repository\ornico-core.repository.csproj" />
+  </ItemGroup>
+
+</Project>

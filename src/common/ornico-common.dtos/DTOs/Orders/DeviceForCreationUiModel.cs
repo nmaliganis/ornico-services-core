@@ -1,7 +1,6 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace magic.button.common.dtos.Vms.Devices
+namespace ornico.common.dtos.DTOs.Orders
 {
   public class DeviceForCreationUiModel
   {

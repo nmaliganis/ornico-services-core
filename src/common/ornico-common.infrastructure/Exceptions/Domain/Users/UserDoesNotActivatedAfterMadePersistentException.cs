@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace magic.button.common.infrastructure.Exceptions.Domain.Users
+namespace ornico.common.infrastructure.Exceptions.Domain.Users
 {
     public class UserDoesNotActivatedAfterMadePersistentException : Exception
     {

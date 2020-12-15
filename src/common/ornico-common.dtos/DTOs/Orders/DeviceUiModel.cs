@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using magic.button.common.dtos.Vms.Devices.Measurements;
 using ornico.common.dtos.DTOs.Bases;
+using ornico.common.dtos.DTOs.Orders.Measurements;
 
-namespace magic.button.common.dtos.Vms.Devices
+namespace ornico.common.dtos.DTOs.Orders
 {
   public class DeviceUiModel : IUiModel
   {

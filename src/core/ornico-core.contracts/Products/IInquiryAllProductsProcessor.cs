@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using ornico.common.infrastructure.Helpers.ResourceParameters;
 using ornico.common.infrastructure.Paging;
-using ornico.core.model.Product;
+using ornico.core.model.Products;
 
 namespace ornico.core.contracts.Products
 {
