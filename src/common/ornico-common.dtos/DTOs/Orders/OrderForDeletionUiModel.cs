@@ -3,14 +3,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ornico.common.dtos.DTOs.Orders
 {
-  public class DeviceForDeletionUiModel
+  public class OrderForDeletionUiModel
   {
     [Required]
     [Editable(true)]
     public Guid Id { get; set; }
-    [Required]
-    [Editable(true)]
-    public bool IsActive { get; set; }
     [Required]
     [Editable(true)]
     public bool DeletionStatus { get; set; }

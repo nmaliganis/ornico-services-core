@@ -19,17 +19,17 @@ namespace ornico.core.services.Products
             _productRepository = productRepository;
         }
 
-        public Task DeleteProductAsync(Guid productToBeDeletedId)
-        {
-            throw new NotImplementedException();
-        }
-
         public Task<ProductForDeletionUiModel> SoftDeleteProductAsync(Guid userAuditId, Guid id)
         {
           throw new NotImplementedException();
         }
 
         public Task<ProductForDeletionUiModel> HardDeleteProductAsync(Guid userAuditId, Guid id)
+        {
+          throw new NotImplementedException();
+        }
+
+        public Task<ProductForDeletionUiModel> DeleteProductAsync(Guid productToBeDeletedId)
         {
           throw new NotImplementedException();
         }

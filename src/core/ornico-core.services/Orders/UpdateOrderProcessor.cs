@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using ornico.common.infrastructure.TypeMappings;
+﻿using ornico.common.infrastructure.TypeMappings;
 using ornico.common.infrastructure.UnitOfWorks;
 using ornico.core.contracts.Orders;
 using ornico.core.repository.ContractRepositories;
@@ -19,9 +17,9 @@ namespace ornico.core.services.Orders
             _autoMapper = autoMapper;
         }
 
-        public Task<OrderUiModel> UpdateOrderAsync(OrderForModificationUiModel updatedOrder)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<OrderUiModel> UpdateOrderAsync(OrderForModificationUiModel updatedOrder)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

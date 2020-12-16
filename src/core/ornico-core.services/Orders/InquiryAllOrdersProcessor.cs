@@ -1,10 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using ornico.common.infrastructure.Paging;
-using ornico.common.infrastructure.PropertyMappings;
+﻿using ornico.common.infrastructure.PropertyMappings;
 using ornico.common.infrastructure.TypeMappings;
 using ornico.core.contracts.Orders;
-using ornico.core.model.Orders;
 using ornico.core.repository.ContractRepositories;
 
 namespace ornico.core.services.Orders
@@ -50,14 +46,14 @@ namespace ornico.core.services.Orders
     //    OrdersResourceParameters.PageSize));
     //}
 
-    public Task<PagedList<Order>> GetOrdersAsync(OrdersResourceParameters ordersResourceParameters)
-    {
-      throw new System.NotImplementedException();
-    }
+    //public Task<PagedList<Order>> GetOrdersAsync(OrdersResourceParameters ordersResourceParameters)
+    //{
+    //  throw new System.NotImplementedException();
+    //}
 
-    public Task<List<OrderUiModel>> GetOrdersForRoutesAsync()
-    {
-      return Task.Run(() => _orderRepository.FindOrdersForRoutes().Select(x => _autoMapper.Map<OrderUiModel>(x)).ToList());
-    }
+    //public Task<List<OrderUiModel>> GetOrdersForRoutesAsync()
+    //{
+    //  return Task.Run(() => _orderRepository.FindOrdersForRoutes().Select(x => _autoMapper.Map<OrderUiModel>(x)).ToList());
+    //}
   }
 }

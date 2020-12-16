@@ -25,10 +25,10 @@ namespace ornico.core.services.Products
             throw new NotImplementedException();
         }
 
-        public Task<ProductDeviceProvisioningUiModel> ProvisioningDeviceToProductAsync(Guid userAuditId, Guid id, Guid deviceId,
-          ProductForModificationProvisioningModel productForModificationProvisioningModel)
-        {
-          throw new NotImplementedException();
-        }
+        //public Task<ProductDeviceProvisioningUiModel> ProvisioningDeviceToProductAsync(Guid userAuditId, Guid id, Guid deviceId,
+        //  ProductForModificationProvisioningModel productForModificationProvisioningModel)
+        //{
+        //  throw new NotImplementedException();
+        //}
     }
 }

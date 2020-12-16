@@ -16,19 +16,33 @@ namespace ornico.core.services.Orders
             _autoMapper = autoMapper;
         }
 
-        public Task<OrderUiModel> GetOrderByIdAsync(Guid id)
+        //public Task<OrderUiModel> GetOrderByIdAsync(Guid id)
+        //{
+        //    return Task.Run(() => _autoMapper.Map<OrderUiModel>(_orderRepository.FindBy(id)));
+        //}
+
+        //public Task<OrderUiModel> GetOrderByEmailAsync(string email)
+        //{
+        //    return Task.Run(() => _autoMapper.Map<OrderUiModel>(_orderRepository.FindOrderByEmail(email)));
+        //}
+
+        //public Task<bool> SearchIfAnyOrderByEmailOrLoginExistsAsync(string email, string login)
+        //{
+        //    return Task.Run(() =>  _orderRepository.FindOrderByEmailOrLogin(email, login).Count > 0);
+        //}
+        public Task<bool> SearchIfAnyOrderByLastNameOrFirstNameExistsAsync(string lastName, string firstName)
         {
-            return Task.Run(() => _autoMapper.Map<OrderUiModel>(_orderRepository.FindBy(id)));
+          throw new NotImplementedException();
         }
 
-        public Task<OrderUiModel> GetOrderByEmailAsync(string email)
+        public Task<int> GetOrderCountTotalsAsync()
         {
-            return Task.Run(() => _autoMapper.Map<OrderUiModel>(_orderRepository.FindOrderByEmail(email)));
+          throw new NotImplementedException();
         }
 
-        public Task<bool> SearchIfAnyOrderByEmailOrLoginExistsAsync(string email, string login)
+        public Task<object> GetOrderByIdAsync(Guid id)
         {
-            return Task.Run(() =>  _orderRepository.FindOrderByEmailOrLogin(email, login).Count > 0);
+          throw new NotImplementedException();
         }
     }
 }

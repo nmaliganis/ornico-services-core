@@ -26,32 +26,36 @@ namespace ornico.core.services.Products
       _propertyMappingService = propertyMappingService;
     }
 
+    //public Task<PagedList<Product>> GetProductsAsync(ProductsResourceParameters productsResourceParameters)
+    //{
+    //  var collectionBeforePaging =
+    //    QueryableExtensions.ApplySort(_productRepository
+    //        .FindAllProductsPagedOf(productsResourceParameters.PageIndex,
+    //          productsResourceParameters.PageSize),
+    //      productsResourceParameters.OrderBy,
+    //      _propertyMappingService.GetPropertyMapping<ProductUiModel, Product>());
+
+    //  if (!string.IsNullOrEmpty(productsResourceParameters.Filter) &&
+    //      !string.IsNullOrEmpty(productsResourceParameters.SearchQuery))
+    //  {
+    //    var searchQueryForWhereClauseFilterFields = productsResourceParameters.Filter
+    //      .Trim().ToLowerInvariant();
+
+    //    var searchQueryForWhereClauseFilterSearchQuery = productsResourceParameters.SearchQuery
+    //      .Trim().ToLowerInvariant();
+
+    //    collectionBeforePaging.QueriedItems = collectionBeforePaging.QueriedItems
+    //      .AsEnumerable().FilterData(searchQueryForWhereClauseFilterFields, searchQueryForWhereClauseFilterSearchQuery)
+    //      .AsQueryable();
+    //  }
+
+    //  return Task.Run(() => PagedList<Product>.Create(collectionBeforePaging,
+    //    productsResourceParameters.PageIndex,
+    //    productsResourceParameters.PageSize));
+    //}
     public Task<PagedList<Product>> GetProductsAsync(ProductsResourceParameters productsResourceParameters)
     {
-      var collectionBeforePaging =
-        QueryableExtensions.ApplySort(_productRepository
-            .FindAllProductsPagedOf(productsResourceParameters.PageIndex,
-              productsResourceParameters.PageSize),
-          productsResourceParameters.OrderBy,
-          _propertyMappingService.GetPropertyMapping<ProductUiModel, Product>());
-
-      if (!string.IsNullOrEmpty(productsResourceParameters.Filter) &&
-          !string.IsNullOrEmpty(productsResourceParameters.SearchQuery))
-      {
-        var searchQueryForWhereClauseFilterFields = productsResourceParameters.Filter
-          .Trim().ToLowerInvariant();
-
-        var searchQueryForWhereClauseFilterSearchQuery = productsResourceParameters.SearchQuery
-          .Trim().ToLowerInvariant();
-
-        collectionBeforePaging.QueriedItems = collectionBeforePaging.QueriedItems
-          .AsEnumerable().FilterData(searchQueryForWhereClauseFilterFields, searchQueryForWhereClauseFilterSearchQuery)
-          .AsQueryable();
-      }
-
-      return Task.Run(() => PagedList<Product>.Create(collectionBeforePaging,
-        productsResourceParameters.PageIndex,
-        productsResourceParameters.PageSize));
+      throw new System.NotImplementedException();
     }
   }
 }

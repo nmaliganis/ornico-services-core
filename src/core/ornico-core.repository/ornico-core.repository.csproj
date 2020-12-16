@@ -13,7 +13,6 @@
   <ItemGroup>
     <PackageReference Include="FluentNHibernate" Version="3.1.0" />
     <PackageReference Include="NHibernate" Version="5.3.5" />
-    <PackageReference Include="nhibernate.postgresql.json" Version="1.1.2" />
     <PackageReference Include="Npgsql" Version="5.0.1.1" />
     <PackageReference Include="Serilog" Version="2.10.0" />
   </ItemGroup>

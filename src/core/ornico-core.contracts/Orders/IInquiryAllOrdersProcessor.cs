@@ -7,6 +7,6 @@ namespace ornico.core.contracts.Orders
 {
     public interface IInquiryAllOrdersProcessor
     {
-      Task<PagedList<Order>> GetOrdersAsync(OrdersResourceParameters ordersResourceParameters);
+      //Task<PagedList<Order>> GetOrdersAsync(OrdersResourceParameters ordersResourceParameters);
     }
 }

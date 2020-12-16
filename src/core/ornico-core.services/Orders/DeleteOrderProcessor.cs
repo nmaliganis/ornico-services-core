@@ -23,14 +23,14 @@ namespace ornico.core.services.Orders
             throw new NotImplementedException();
         }
 
-        public Task<OrderForDeletionUiModel> SoftDeleteOrderAsync(Guid userAuditId, Guid id)
-        {
-          throw new NotImplementedException();
-        }
+        //public Task<OrderForDeletionUiModel> SoftDeleteOrderAsync(Guid userAuditId, Guid id)
+        //{
+        //  throw new NotImplementedException();
+        //}
 
-        public Task<OrderForDeletionUiModel> HardDeleteOrderAsync(Guid userAuditId, Guid id)
-        {
-          throw new NotImplementedException();
-        }
+        //public Task<OrderForDeletionUiModel> HardDeleteOrderAsync(Guid userAuditId, Guid id)
+        //{
+        //  throw new NotImplementedException();
+        //}
     }
 }

@@ -19,6 +19,7 @@ using ornico.common.infrastructure.TypeMappings;
 using ornico.common.infrastructure.UnitOfWorks;
 using ornico.core.api.Helpers;
 using ornico.core.contracts.Orders;
+using ornico.core.contracts.Products;
 using ornico.core.contracts.Users;
 using ornico.core.contracts.V1;
 using ornico.core.repository.ContractRepositories;
@@ -26,6 +27,7 @@ using ornico.core.repository.Mappings.Users;
 using ornico.core.repository.NhUnitOfWork;
 using ornico.core.repository.Repositories;
 using ornico.core.services.Orders;
+using ornico.core.services.Products;
 using ornico.core.services.Users;
 using ornico.core.services.V1;
 
@@ -66,6 +68,14 @@ namespace ornico.core.api.Configurations
       services.AddScoped<IDeleteOrderProcessor, DeleteOrderProcessor>();
       services.AddScoped<IOrderRepository, OrderRepository>();
       services.AddScoped<IOrdersControllerDependencyBlock, OrdersControllerDependencyBlock>();
+
+      services.AddScoped<IInquiryProductProcessor, InquiryProductProcessor>();
+      services.AddScoped<IInquiryAllProductsProcessor, InquiryAllProductsProcessor>();
+      services.AddScoped<ICreateProductProcessor, CreateProductProcessor>();
+      services.AddScoped<IUpdateProductProcessor, UpdateProductProcessor>();
+      services.AddScoped<IDeleteProductProcessor, DeleteProductProcessor>();
+      services.AddScoped<IProductRepository, ProductRepository>();
+      services.AddScoped<IProductsControllerDependencyBlock, ProductsControllerDependencyBlock>();
     }
 
     public static void ConfigureAutoMapper(IServiceCollection services)
