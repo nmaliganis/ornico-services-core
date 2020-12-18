@@ -63,6 +63,10 @@
     <ProjectReference Include="..\ornico-core.services\ornico-core.services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Configurations\AutoMappingProfiles\Orders\" />
+  </ItemGroup>
+
   <PropertyGroup> 
     <ServerGarbageCollection>false</ServerGarbageCollection>
   </PropertyGroup>

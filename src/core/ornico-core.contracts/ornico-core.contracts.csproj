@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Orders\IInquiryOrderProcessor.cs~RFa93b101.TMP" />
     <None Remove="Products\IInquiryProductProcessor.cs~RF2a69c1a1.TMP" />
     <None Remove="V1\IContainersControllerDependencyBlock.cs~RF975cd33.TMP" />
     <None Remove="V1\IProductsControllerDependencyBlock.cs~RFa745f3e.TMP" />

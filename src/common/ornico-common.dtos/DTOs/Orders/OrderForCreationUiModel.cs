@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ornico.common.dtos.DTOs.Orders
 {
@@ -6,10 +8,16 @@ namespace ornico.common.dtos.DTOs.Orders
     {
         [Required(AllowEmptyStrings = false)]
         [Editable(true)]
-        public string OrderName { get; set; }
-        [Editable(true)]
-        public string OrderDescription { get; set; }
-        [Editable(true)]
-        public double OrderPrice { get; set; }
+        public IList<OrderCreationUIModel> Products { get; set; }
+    }
+
+    public class OrderCreationUIModel
+    {
+      [Required]
+      [Editable(true)]
+      public Guid ProductId { get; set; }
+      [Required]
+      [Editable(true)]
+      public int ProductQty { get; set; }
     }
 }

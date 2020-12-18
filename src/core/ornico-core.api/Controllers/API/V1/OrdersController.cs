@@ -141,51 +141,16 @@ namespace ornico.core.api.Controllers.API.V1
         return NotFound();
       }
 
-      var Order = Mapper.Map<OrderUiModel>(orderFromRepo);
+      var order = Mapper.Map<OrderUiModel>(orderFromRepo);
 
       var links = CreateLinksForOrder(id, fields);
 
-      var linkedResourceToReturn = Order.ShapeData(fields)
+      var linkedResourceToReturn = order.ShapeData(fields)
         as IDictionary<string, object>;
 
       linkedResourceToReturn.Add("links", links);
 
       return Ok(linkedResourceToReturn);
-    }
-
-    /// <summary>
-    /// PUT : Update an Existing Order.
-    /// </summary>
-    /// <param name="id">Order Id for Modification</param>
-    /// <param name="orderForModificationUiModel">OrderForModificationUiModel the Request Model for Modification</param>
-    /// <remarks> return a ResponseEntity with status 201 (Created) if the new Container is created, 400 (Bad Request), 500 (Server Error) </remarks>
-    /// <response code="200">Ok (if the Order is updated)</response>
-    /// <response code="400">Bad Request</response>
-    /// <response code="500">Internal Server Error</response>
-    [HttpPut("{id}", Name = "PutOrderRoute")]
-    [ValidateModel]
-    public async Task<IActionResult> PutOrderRouteAsync(Guid id,
-      [FromBody] OrderForModificationUiModel orderForModificationUiModel)
-    {
-      return BadRequest(new {errorMessage = "UNKNOWN_ERROR_UPDATE_Order"});
-    }
-
-
-    /// <summary>
-    /// Delete - Delete an existing Order 
-    /// </summary>
-    /// <param name="id">Order Id for Deletion</param>
-    /// <remarks>Delete Existing Order </remarks>
-    /// <response code="200">Resource retrieved correctly</response>
-    /// <response code="400">Resource Not Found</response>
-    /// <response code="500">Internal Server Error.</response>
-    [HttpDelete("{id}", Name = "DeleteOrderRoot")]
-    [Authorize(AuthenticationSchemes = "Bearer")]
-    public async Task<IActionResult> DeleteHardOrderRoot(Guid id)
-    {
-      //var orderToBeDeleted = await _deleteOrderProcessor.DeleteOrderAsync(id);
-      //return Ok(orderToBeDeleted.DeletionStatus);
-      return Ok();
     }
 
     /// <summary>

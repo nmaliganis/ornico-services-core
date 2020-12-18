@@ -6,7 +6,6 @@ namespace ornico.core.contracts.Orders
 {
   public interface IDeleteOrderProcessor
   {
-    //Task<OrderForDeletionUiModel> DeleteOrderAsync(Guid orderToBeDeletedId);
-    Task DeleteOrderAsync(Guid id);
+    Task<bool> DeleteOrderAsync(Guid id);
   }
 }
