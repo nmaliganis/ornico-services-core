@@ -71,7 +71,6 @@ namespace ornico.core.api.Configurations
       services.AddScoped<IOrdersControllerDependencyBlock, OrdersControllerDependencyBlock>();
 
       services.AddScoped<IInquiryProductProcessor, InquiryProductProcessor>();
-      services.AddScoped<IInquiryAllProductsProcessor, InquiryAllProductsProcessor>();
       services.AddScoped<ICreateProductProcessor, CreateProductProcessor>();
       services.AddScoped<IUpdateProductProcessor, UpdateProductProcessor>();
       services.AddScoped<IDeleteProductProcessor, DeleteProductProcessor>();

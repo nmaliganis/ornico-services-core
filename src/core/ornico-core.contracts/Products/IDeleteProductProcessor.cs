@@ -6,6 +6,6 @@ namespace ornico.core.contracts.Products
 {
   public interface IDeleteProductProcessor
   {
-    Task<ProductForDeletionUiModel> DeleteProductAsync(Guid productToBeDeletedId);
+    Task<bool> DeleteProductAsync(Guid productToBeDeletedId);
   }
 }

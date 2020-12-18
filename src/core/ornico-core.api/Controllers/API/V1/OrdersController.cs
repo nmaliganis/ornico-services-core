@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using ornico.common.dtos.DTOs.Orders;
 using ornico.common.dtos.Links;
 using ornico.common.infrastructure.Extensions;
@@ -19,7 +17,6 @@ using ornico.core.contracts.Orders;
 using ornico.core.contracts.Users;
 using ornico.core.contracts.V1;
 using ornico.core.model.Orders;
-using Serilog;
 
 namespace ornico.core.api.Controllers.API.V1
 {

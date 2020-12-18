@@ -104,7 +104,7 @@ namespace ornico.core.repository.Repositories
           .CreateAlias("Tenant", "t", JoinType.InnerJoin)
           .Add(Restrictions.Or(
             Restrictions.Eq("Name", email),
-            Restrictions.Eq("t.Login", login)))
+            Restrictions.Eq("t.Name", login)))
           .SetCacheable(true)
           .SetCacheMode(CacheMode.Normal)
           .SetFlushMode(FlushMode.Never)

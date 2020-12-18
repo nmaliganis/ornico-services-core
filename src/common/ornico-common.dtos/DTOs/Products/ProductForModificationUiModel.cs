@@ -13,5 +13,9 @@ namespace ornico.common.dtos.DTOs.Products
 
         [Editable(true)]
         public string ProductName { get; set; }
+        [Editable(true)]
+        public string ProductDescription { get; set; }
+        [Editable(true)]
+        public double ProductPrice { get; set; }
     }
 }

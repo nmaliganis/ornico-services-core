@@ -11,6 +11,6 @@ namespace ornico.common.infrastructure.Exceptions.Domain.Users
             Login = login;
         }
 
-        public override string Message => $" User with Login: {Login} was not Activated!";
+        public override string Message => $" User with Name: {Login} was not Activated!";
     }
 }

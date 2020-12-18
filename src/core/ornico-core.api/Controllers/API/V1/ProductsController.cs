@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using ornico.common.dtos.DTOs.Products;
 using ornico.common.dtos.Links;
 using ornico.common.infrastructure.Extensions;
-using ornico.common.infrastructure.Helpers;
-using ornico.common.infrastructure.Helpers.ResourceParameters;
 using ornico.common.infrastructure.PropertyMappings;
 using ornico.common.infrastructure.PropertyMappings.TypeHelpers;
 using ornico.core.api.Controllers.API.Base;
@@ -18,7 +14,6 @@ using ornico.core.api.Validators;
 using ornico.core.contracts.Products;
 using ornico.core.contracts.Users;
 using ornico.core.contracts.V1;
-using ornico.core.model.Products;
 using Serilog;
 
 namespace ornico.core.api.Controllers.API.V1
@@ -35,7 +30,6 @@ namespace ornico.core.api.Controllers.API.V1
     private readonly ITypeHelperService _typeHelperService;
     private readonly IPropertyMappingService _propertyMappingService;
 
-    private readonly IInquiryAllProductsProcessor _inquiryAllProductsProcessor;
     private readonly IInquiryProductProcessor _inquiryProductProcessor;
     private readonly ICreateProductProcessor _createProductProcessor;
     private readonly IUpdateProductProcessor _updateProductProcessor;
@@ -54,7 +48,6 @@ namespace ornico.core.api.Controllers.API.V1
       _typeHelperService = typeHelperService;
       _propertyMappingService = propertyMappingService;
 
-      _inquiryAllProductsProcessor = blockProduct.InquiryAllProductsProcessor;
       _inquiryProductProcessor = blockProduct.InquiryProductProcessor;
       _createProductProcessor = blockProduct.CreateProductProcessor;
       _updateProductProcessor = blockProduct.UpdateProductProcessor;
@@ -76,11 +69,6 @@ namespace ornico.core.api.Controllers.API.V1
     public async Task<IActionResult> PostProductRouteAsync(
       [FromBody] ProductForCreationUiModel productForCreationUiModel)
     {
-      var userAudit = await _inquiryUserProcessor.GetUserByLoginAsync(GetEmailFromClaims());
-
-      if (userAudit == null)
-        return BadRequest();
-
       var newCreatedProduct =
         await _createProductProcessor.CreateProductAsync(productForCreationUiModel);
 
@@ -141,7 +129,7 @@ namespace ornico.core.api.Controllers.API.V1
 
       if (productFromRepo == null)
       {
-        return NotFound();
+        return NotFound("ERROR_PRODUCT_RETRIEVAL");
       }
 
       var product = Mapper.Map<ProductUiModel>(productFromRepo);
@@ -186,59 +174,8 @@ namespace ornico.core.api.Controllers.API.V1
     [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<IActionResult> DeleteHardProductRoot(Guid id)
     {
-      var productToBeDeleted = await _deleteProductProcessor.DeleteProductAsync(id);
-      return Ok(productToBeDeleted.DeletionStatus);
-    }
-
-    /// <summary>
-    /// Get : Retrieve All/or Partial Paged Stored Products 
-    /// </summary>
-    /// <remarks>Retrieve paged Products providing Paging Query</remarks>
-    /// <response code="200">Resource retrieved correctly.</response>
-    /// <response code="500">Internal Server Error.</response>
-    [HttpGet(Name = "GetProducts")]
-    public async Task<IActionResult> GetProductsAsync([FromQuery] ProductsResourceParameters productsResourceParameters)
-    {
-      if (!_propertyMappingService.ValidMappingExistsFor<ProductUiModel, Product>
-        (productsResourceParameters.OrderBy))
-      {
-        return BadRequest();
-      }
-
-      if (!_typeHelperService.TypeHasProperties<ProductUiModel>
-        (productsResourceParameters.Fields))
-      {
-        return BadRequest();
-      }
-
-      var productsQueryable =
-        await _inquiryAllProductsProcessor.GetProductsAsync(productsResourceParameters);
-
-      var products = Mapper.Map<IEnumerable<ProductUiModel>>(productsQueryable);
-
-      var previousPageLink = productsQueryable.HasPrevious
-        ? CreateProductsResourceUri(productsResourceParameters,
-          ResourceUriType.PreviousPage)
-        : null;
-
-      var nextPageLink = productsQueryable.HasNext
-        ? CreateProductsResourceUri(productsResourceParameters, ResourceUriType.NextPage)
-        : null;
-
-      var paginationMetadata = new
-      {
-        previousPageLink = previousPageLink,
-        nextPageLink = nextPageLink,
-        totalCount = productsQueryable.TotalCount,
-        pageSize = productsQueryable.PageSize,
-        currentPage = productsQueryable.CurrentPage,
-        totalPages = productsQueryable.TotalPages
-      };
-
-      Response.Headers.Add("X-Pagination",
-        JsonConvert.SerializeObject(paginationMetadata));
-
-      return Ok(products.ShapeData(productsResourceParameters.Fields));
+      var deletionStatus = await _deleteProductProcessor.DeleteProductAsync(id);
+      return deletionStatus ? (IActionResult) Ok("SUCCESS_CREATION") : BadRequest("ERROR_PRODUCT_DELETION");
     }
 
     #region Link Builder
@@ -263,76 +200,6 @@ namespace ornico.core.api.Controllers.API.V1
       }
 
       return links;
-    }
-
-
-    private IEnumerable<LinkDto> CreateLinksForProducts(
-      ProductsResourceParameters productsResourceParameters,
-      bool hasNext, bool hasPrevious)
-    {
-      var links = new List<LinkDto>
-      {
-        new LinkDto(CreateProductsResourceUri(productsResourceParameters,
-            ResourceUriType.Current)
-          , "self", "GET")
-      };
-
-      if (hasNext)
-      {
-        links.Add(
-          new LinkDto(CreateProductsResourceUri(productsResourceParameters,
-              ResourceUriType.NextPage),
-            "nextPage", "GET"));
-      }
-
-      if (hasPrevious)
-      {
-        links.Add(
-          new LinkDto(CreateProductsResourceUri(productsResourceParameters,
-              ResourceUriType.PreviousPage),
-            "previousPage", "GET"));
-      }
-
-      return links;
-    }
-
-    private string CreateProductsResourceUri(ProductsResourceParameters productsResourceParameters,
-      ResourceUriType type)
-    {
-      switch (type)
-      {
-        case ResourceUriType.PreviousPage:
-          return _urlHelper.Link("GetProducts",
-            new
-            {
-              fields = productsResourceParameters.Fields,
-              orderBy = productsResourceParameters.OrderBy,
-              searchQuery = productsResourceParameters.SearchQuery,
-              pageNumber = productsResourceParameters.PageIndex - 1,
-              pageSize = productsResourceParameters.PageSize
-            });
-        case ResourceUriType.NextPage:
-          return _urlHelper.Link("GetProducts",
-            new
-            {
-              fields = productsResourceParameters.Fields,
-              orderBy = productsResourceParameters.OrderBy,
-              searchQuery = productsResourceParameters.SearchQuery,
-              pageNumber = productsResourceParameters.PageIndex + 1,
-              pageSize = productsResourceParameters.PageSize
-            });
-        case ResourceUriType.Current:
-        default:
-          return _urlHelper.Link("GetProducts",
-            new
-            {
-              fields = productsResourceParameters.Fields,
-              orderBy = productsResourceParameters.OrderBy,
-              searchQuery = productsResourceParameters.SearchQuery,
-              pageNumber = productsResourceParameters.PageIndex,
-              pageSize = productsResourceParameters.PageSize
-            });
-      }
     }
 
     #endregion

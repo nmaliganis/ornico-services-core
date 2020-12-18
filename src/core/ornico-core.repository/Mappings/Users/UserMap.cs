@@ -63,7 +63,6 @@ namespace ornico.core.repository.Mappings.Users
         .Length(128)
         ;
 
-
       Map(x => x.CreatedDate)
         .Column("createddate")
         .CustomType("DateTime")

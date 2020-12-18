@@ -14,7 +14,7 @@ namespace ornico.core.model.Products
 
         private void OnCreated()
         {
-            this.CreatedDate = DateTime.UtcNow;
+            this.CreatedDate = DateTime.Now;
             this.Price = 0;
             this.Items = new HashSet<OrderItem>();
         }
@@ -30,9 +30,11 @@ namespace ornico.core.model.Products
 
         }
 
-        public virtual void InjectWithInitialAttributes(string personEmail)
+        public virtual void InjectWithInitialAttributes(string name, string description, double price)
         {
-          
+          this.Name = name;
+          this.Description = description;
+          this.Price = price;
         }
     }
 }
