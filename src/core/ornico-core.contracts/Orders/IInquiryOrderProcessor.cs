@@ -6,6 +6,6 @@ namespace ornico.core.contracts.Orders
 {
     public interface IInquiryOrderProcessor
     {
-        Task<OrderUiModel> GetOrderByIdAsync(Guid id);
+        Task<OrderUiModel> GetOrderByIdAsync(Guid idUser, Guid id);
     }
 }

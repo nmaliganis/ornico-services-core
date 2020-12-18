@@ -73,7 +73,7 @@ namespace ornico.core.api.Controllers.API.V1
     public async Task<IActionResult> PostOrderRouteAsync(
       [FromBody] OrderForCreationUiModel orderForCreationUiModel)
     {
-      var userAudit = await _inquiryUserProcessor.GetUserByLoginAsync(GetEmailFromClaims());
+      var userAudit = await _inquiryUserProcessor.GetUserByUsernameAsync(GetEmailFromClaims());
 
       if (userAudit == null)
         return BadRequest();
@@ -97,7 +97,7 @@ namespace ornico.core.api.Controllers.API.V1
       //      $"Datetime:{DateTime.Now} -- OrderInfo:{orderForCreationUiModel.OrderName}");
       //    return BadRequest(new {errorMessage = "Order_ALREADY_EXISTS"});
       //  }
-      //  case ("ERROR_Order_NOT_MADE_PERSISTENT"):
+      //  case ("ERROR_ORDER_NOT_MADE_PERSISTENT"):
       //  {
       //    Log.Error(
       //      $"--Method:PostOrderRouteAsync -- Message:ERROR_Order_NOT_MADE_PERSISTENT -- " +
@@ -126,27 +126,26 @@ namespace ornico.core.api.Controllers.API.V1
     /// <response code="404">Resource Not Found</response>
     /// <response code="500">Internal Server Error.</response>
     [HttpGet("{id}", Name = "GetOrder")]
-    public async Task<IActionResult> GetOrderAsync(Guid id, [FromQuery] string fields)
+    [Authorize]
+    public async Task<IActionResult> GetOrderAsync(Guid id)
     {
-      if (!_typeHelperService.TypeHasProperties<OrderUiModel>
-        (fields))
-      {
-        return BadRequest();
-      }
+      var userAudit = await _inquiryUserProcessor.GetUserByUserIdAsync(GetUserIdFromClaims());
 
-      var orderFromRepo = await _inquiryOrderProcessor.GetOrderByIdAsync(id);
+      if (userAudit == null)
+        return BadRequest("ERROR_ORDER_USER_NOT_EXIST");
+
+      var orderFromRepo = await _inquiryOrderProcessor.GetOrderByIdAsync(userAudit.Id, id);
 
       if (orderFromRepo == null)
       {
-        return NotFound();
+        return NotFound("ERROR_ORDER_NOT_EXIST");
       }
 
       var order = Mapper.Map<OrderUiModel>(orderFromRepo);
 
-      var links = CreateLinksForOrder(id, fields);
+      var links = CreateLinksForOrder(id);
 
-      var linkedResourceToReturn = order.ShapeData(fields)
-        as IDictionary<string, object>;
+      var linkedResourceToReturn = (IDictionary<string, object>) order;
 
       linkedResourceToReturn.Add("links", links);
 
@@ -207,24 +206,14 @@ namespace ornico.core.api.Controllers.API.V1
 
     #region Link Builder
 
-    private IEnumerable<LinkDto> CreateLinksForOrder(Guid id, string fields)
+    private IEnumerable<LinkDto> CreateLinksForOrder(Guid id)
     {
-      var links = new List<LinkDto>();
-
-      if (String.IsNullOrWhiteSpace(fields))
+      var links = new List<LinkDto>
       {
-        links.Add(
-          new LinkDto(_urlHelper.Link("GetOrder", new {id = id}),
-            "self",
-            "GET"));
-      }
-      else
-      {
-        links.Add(
-          new LinkDto(_urlHelper.Link("GetOrder", new {id = id, fields = fields}),
-            "self",
-            "GET"));
-      }
+        new LinkDto(_urlHelper.Link("GetOrder", new {id = id}),
+          "self",
+          "GET")
+      };
 
       return links;
     }

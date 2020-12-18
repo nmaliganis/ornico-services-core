@@ -1,24 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using ornico.common.dtos.DTOs.Bases;
-using ornico.common.dtos.DTOs.Products;
 
-namespace ornico.common.dtos.DTOs.Orders
+namespace ornico.common.dtos.DTOs.Products
 {
-    public class OrderUiModel : IUiModel
+    public class ProductRetrievalUiModel : IUiModel
     {
         [Key]
         public Guid Id { get; set; }
         [Editable(true)]
         public string Message { get; set; }
-
+        [Required(AllowEmptyStrings = false)]
+        [Editable(true)]
+        public string ProductName { get; set; }
         [Required]
         [Editable(true)]
-        public double OrderTotals { get; set; }
-
+        public double ProductPrice { get; set; }
         [Required]
         [Editable(true)]
-        public List<ProductRetrievalUiModel> Products { get; set; }
+        public int ProductQty { get; set; }
     }
 }

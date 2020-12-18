@@ -16,6 +16,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
 using ornico.core.api.Configurations;
+using ornico.core.api.Configurations.AutoMappingProfiles.Orders;
 using ornico.core.api.Configurations.AutoMappingProfiles.Products;
 using ornico.core.api.Configurations.AutoMappingProfiles.Users;
 using Serilog;
@@ -230,6 +231,7 @@ namespace ornico.core.api
       {
         cfg.AddProfile<UserEntityToUserUiAutoMapperProfile>();
         cfg.AddProfile<UserEntityToUserForRetrievalUiAutoMapperProfile>();
+        cfg.AddProfile<OrderEntityToOrderUiAutoMapperProfile>();
         cfg.AddProfile<ProductEntityToProductUiAutoMapperProfile>();
         cfg.AddProfile<ProductForCreationUiModelToProductEntityAutoMapperProfile>();
         cfg.AddProfile<ProductForModificationUiModelToProductEntityAutoMapperProfile>();

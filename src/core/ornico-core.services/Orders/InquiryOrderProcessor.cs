@@ -17,9 +17,10 @@ namespace ornico.core.services.Orders
       _orderRepository = orderRepository;
       _autoMapper = autoMapper;
     }
-    public Task<OrderUiModel> GetOrderByIdAsync(Guid id)
+    public Task<OrderUiModel> GetOrderByIdAsync(Guid idUser, Guid id)
     {
-      return Task.Run(() => _autoMapper.Map<OrderUiModel>(_orderRepository.FindBy(id)));
+      var x = _orderRepository.FindOrderForUserByOrderId(idUser, id);
+      return Task.Run(() => _autoMapper.Map<OrderUiModel>(_orderRepository.FindOrderForUserByOrderId(idUser, id)));
     }
   }
 }

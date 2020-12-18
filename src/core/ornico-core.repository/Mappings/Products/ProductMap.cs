@@ -8,63 +8,63 @@ namespace ornico.core.repository.Mappings.Products
   {
     public ProductMap()
     {
+      Schema(@"public");
       Table(@"products");
-
+      LazyLoad();
       Id(x => x.Id)
         .Column("id")
         .CustomType("Guid")
-        .Access.Property()
-        .CustomSqlType("uuid")
+        .Access.Property().CustomSqlType("uuid")
         .Not.Nullable()
         .GeneratedBy
         .GuidComb()
         ;
 
-      Map(x => x.Name)
-        .Column("name")
-        .CustomType("string")
+      Map(x => x.Name)    
+        .Column("`name`")
+        .CustomType("String")
         .Access.Property()
-        .Generated.Never()
-        .CustomSqlType("varchar(128)")
+        .Generated.Never().CustomSqlType("varchar(128)")
         .Not.Nullable()
         .Length(128)
         ;
 
-      Map(x => x.Description)
+      Map(x => x.Description)    
         .Column("description")
-        .CustomType("string")
+        .CustomType("String")
         .Access.Property()
-        .Generated.Never()
-        .CustomSqlType("varchar(128)")
-        .Not.Nullable()
+        .Generated.Never().CustomSqlType("varchar")
         ;
 
-      Map(x => x.CreatedDate)
+      Map(x => x.CreatedDate)    
         .Column("createddate")
         .CustomType("DateTime")
         .Access.Property()
         .Generated.Never()
+        .Default(@"now()").CustomSqlType("timestamp")
         .Not.Nullable()
         ;
 
-      Map(x => x.Price)
+      Map(x => x.Price)    
         .Column("price")
-        .CustomType("double")
+        .CustomType("Double")
         .Access.Property()
         .Generated.Never()
-        .Nullable()
+        .Default(@"0.0").CustomSqlType("float8")
+        .Not.Nullable()
         ;
 
       HasMany<OrderItem>(x => x.Items)
         .Access.Property()
         .AsSet()
-        .Cascade.None()
+        .Cascade.All()
         .LazyLoad()
         .Inverse()
         .Generic()
         .KeyColumns.Add("product_id", mapping => mapping.Name("product_id")
           .SqlType("uuid")
-          .Nullable());
+          .Not.Nullable())
+        ;
     }
   }
 }

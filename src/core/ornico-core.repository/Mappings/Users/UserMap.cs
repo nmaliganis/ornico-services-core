@@ -8,15 +8,14 @@ namespace ornico.core.repository.Mappings.Users
   {
     public UserMap()
     {
+      Schema(@"public");
       Table(@"users");
-
+      LazyLoad();
       Id(x => x.Id)
         .Column("id")
         .CustomType("Guid")
-        .Access.Property()
-        .CustomSqlType("uuid")
+        .Access.Property().CustomSqlType("uuid")
         .Not.Nullable()
-        .Precision(11)
         .GeneratedBy
         .GuidComb()
         ;
@@ -25,8 +24,7 @@ namespace ornico.core.repository.Mappings.Users
         .Column("displayname")
         .CustomType("String")
         .Access.Property()
-        .Generated.Never()
-        .CustomSqlType("varchar(256)")
+        .Generated.Never().CustomSqlType("varchar(256)")
         .Not.Nullable()
         .Length(256)
         ;
@@ -34,31 +32,23 @@ namespace ornico.core.repository.Mappings.Users
       Map(x => x.UserName)
         .Column("username")
         .CustomType("String")
-        .Unique()
         .Access.Property()
-        .Generated.Never()
-        .CustomSqlType("varchar(256)")
+        .Generated.Never().CustomSqlType("varchar(256)")
         .Not.Nullable()
-        .Length(256)
-        ;
-
+        .Length(256);
       Map(x => x.Password)
-        .Column("password")
+        .Column("`password`")
         .CustomType("String")
-        .Unique()
         .Access.Property()
-        .Generated.Never()
-        .CustomSqlType("varchar")
+        .Generated.Never().CustomSqlType("varchar")
         .Not.Nullable()
         ;
 
       Map(x => x.Email)
         .Column("email")
         .CustomType("String")
-        .Unique()
         .Access.Property()
-        .Generated.Never()
-        .CustomSqlType("varchar(128)")
+        .Generated.Never().CustomSqlType("varchar(128)")
         .Not.Nullable()
         .Length(128)
         ;
@@ -68,6 +58,7 @@ namespace ornico.core.repository.Mappings.Users
         .CustomType("DateTime")
         .Access.Property()
         .Generated.Never()
+        .Default(@"now()").CustomSqlType("timestamp")
         .Not.Nullable()
         ;
 
@@ -76,19 +67,21 @@ namespace ornico.core.repository.Mappings.Users
         .CustomType("DateTime")
         .Access.Property()
         .Generated.Never()
+        .Default(@"now()").CustomSqlType("timestamptz")
         .Not.Nullable()
         ;
 
       HasMany<Order>(x => x.Orders)
         .Access.Property()
         .AsSet()
-        .Cascade.None()
+        .Cascade.All()
         .LazyLoad()
         .Inverse()
         .Generic()
         .KeyColumns.Add("user_id", mapping => mapping.Name("user_id")
           .SqlType("uuid")
-          .Nullable());
+          .Not.Nullable())
+        ;
     }
   }
 }

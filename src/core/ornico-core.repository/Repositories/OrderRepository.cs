@@ -39,129 +39,19 @@ namespace ornico.core.repository.Repositories
         ;
     }
 
-    public Order FindByFirstNameAndLastName(string lastName, string firstName)
-    {
-      return (Order)
-        Session.CreateCriteria(typeof(Order))
-          .Add(Expression.Eq("FirstName", firstName))
-          .Add(Expression.Eq("LastName", lastName))
-          .UniqueResult()
-        ;
-    }
-
-    public IList<Order> FindActiveOrders(bool active)
-    {
-      return
-        Session.CreateCriteria(typeof(Order))
-          .Add(Expression.Eq("Active", active))
-          .SetCacheable(true)
-          .SetCacheMode(CacheMode.Normal)
-          .SetFlushMode(FlushMode.Never)
-          .List<Order>()
-        ;
-    }
-
-    public Order FindOneOrderByMobile(string mobile)
-    {
-      throw new NotImplementedException();
-    }
-
-    public Order FindOrderByDeviceId(Guid idDevice)
-    {
-      throw new NotImplementedException();
-    }
-
-    public Order FindOrderByEmail(string email)
+    public Order FindOrderForUserByOrderId(Guid idUser, Guid idOrder)
     {
       return
         (Order)
         Session.CreateCriteria(typeof(Order))
-          .Add(Expression.Eq("Name", email))
+          //.CreateAlias("User", "u", JoinType.InnerJoin)
+          .Add(Expression.Eq("Id", idOrder))
+          //.Add(Expression.Eq("u.Id", idUser))
           .SetCacheable(true)
           .SetCacheMode(CacheMode.Normal)
           .SetFlushMode(FlushMode.Never)
           .UniqueResult()
         ;
-    }
-
-    public Order FindOrderByUserId(Guid userId)
-    {
-      return
-        (Order)
-        Session.CreateCriteria(typeof(Order))
-          .Add(Expression.Eq("UserId", userId))
-          .SetCacheable(true)
-          .SetCacheMode(CacheMode.Normal)
-          .SetFlushMode(FlushMode.Never)
-          .UniqueResult()
-        ;
-    }
-
-    public IList<Order> FindOrderByEmailOrLogin(string email, string login)
-    {
-      return
-        Session.CreateCriteria(typeof(Order))
-          .CreateAlias("Tenant", "t", JoinType.InnerJoin)
-          .Add(Restrictions.Or(
-            Restrictions.Eq("Name", email),
-            Restrictions.Eq("t.Name", login)))
-          .SetCacheable(true)
-          .SetCacheMode(CacheMode.Normal)
-          .SetFlushMode(FlushMode.Never)
-          .List<Order>()
-        ;
-    }
-
-    public IList<Order> FindOrdersForRoutes()
-    {
-      return
-        Session.CreateCriteria(typeof(Order))
-          .CreateAlias("OrderRole", "r", JoinType.InnerJoin)
-          .Add(Restrictions.Eq("IsActive", true))
-          //.Add(Restrictions.Ge("r.Type", OrderRoleType.Driver))
-          //.Add(Restrictions.Le("r.Type", OrderRoleType.Cleaner))
-          .SetCacheable(true)
-          .SetCacheMode(CacheMode.Normal)
-          .SetFlushMode(FlushMode.Never)
-          .List<Order>()
-        ;
-    }
-
-    public Order FindOneBy(Guid OrderId)
-    {
-      return
-        (Order)
-        Session.CreateCriteria(typeof(Order))
-          .Add(Expression.Eq("Id", OrderId))
-          .Add(Expression.Eq("IsActive", true))
-          .SetCacheable(true)
-          .SetCacheMode(CacheMode.Normal)
-          .SetFlushMode(FlushMode.Never)
-          .UniqueResult()
-        ;
-    }
-
-    public int FindCountTotals()
-    {
-      int count = 0;
-      try
-      {
-        count = Session
-          .CreateCriteria<NotImplementedException>()
-          .Add(Expression.Eq("IsActive", true))
-          .SetProjection(
-            Projections.Count(Projections.Id())
-          )
-          .UniqueResult<int>();
-      }
-      catch (Exception e)
-      {
-        Log.Error(
-          $"FindCountTotals" + $"Error Message:{e.Message}" + 
-          "--OrderRepository--  @fail@ [OrderRepository]." + $" @inner-fault:{e?.Message} and {e?.InnerException}");
-      }
-
-      return count;
     }
   }
 }

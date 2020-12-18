@@ -85,6 +85,7 @@ namespace ornico.core.api.Configurations
 
     public static void ConfigureNHibernate(IServiceCollection services, string connectionString)
     {
+      HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
       try
       {
         var cfg = Fluently.Configure()

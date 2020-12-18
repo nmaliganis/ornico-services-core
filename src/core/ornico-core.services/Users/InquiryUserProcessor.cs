@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using ornico.common.dtos.DTOs.Users;
 using ornico.common.infrastructure.TypeMappings;
 using ornico.core.contracts.Users;
@@ -16,7 +17,12 @@ namespace ornico.core.services.Users
             _autoMapper = autoMapper;
         }
 
-        public Task<UserUiModel> GetUserByLoginAsync(string login)
+        public Task<UserUiModel> GetUserByUserIdAsync(Guid idUser)
+        {
+          return Task.Run(() => _autoMapper.Map<UserUiModel>(_userRepository.FindBy(idUser)));
+        }
+
+        public Task<UserUiModel> GetUserByUsernameAsync(string login)
         {
             return Task.Run(() => _autoMapper.Map<UserUiModel>(_userRepository.FindUserByUsername(login)));
         }
