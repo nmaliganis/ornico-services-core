@@ -228,6 +228,7 @@ namespace ornico.core.api
       AutoMapper.Mapper.Initialize(cfg =>
       {
         cfg.AddProfile<UserEntityToUserUiAutoMapperProfile>();
+        cfg.AddProfile<UserEntityToUserForRetrievalUiAutoMapperProfile>();
       });
 
       app.UseApiVersioning();

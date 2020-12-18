@@ -27,3 +27,5 @@ src/core/ornico-core.contracts/bin/
 src/core/ornico-core.api/bin/
 
 src/common/ornico-common.dtos/bin/Debug/
+
+src/auth/

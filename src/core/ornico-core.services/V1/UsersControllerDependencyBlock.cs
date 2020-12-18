@@ -5,12 +5,14 @@ namespace ornico.core.services.V1
 {
     public class UsersControllerDependencyBlock : IUsersControllerDependencyBlock
     {
-        public UsersControllerDependencyBlock(IInquiryUserProcessor inquiryVehicleProcessor)
+        public UsersControllerDependencyBlock(ICreateUserProcessor createUserProcessor, IInquiryUserProcessor inquiryVehicleProcessor)
 
         {
             InquiryUserProcessor = inquiryVehicleProcessor;
+            CreateUserProcessor = createUserProcessor;
         }
 
+        public ICreateUserProcessor CreateUserProcessor { get; }
         public IInquiryUserProcessor InquiryUserProcessor { get; }
     }
 }

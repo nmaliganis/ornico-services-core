@@ -58,6 +58,7 @@ namespace ornico.core.api.Configurations
       services.AddSingleton<ITypeHelperService, TypeHelperService>();
 
       services.AddScoped<IInquiryUserProcessor, InquiryUserProcessor>();
+      services.AddScoped<ICreateUserProcessor, CreateUserProcessor>();
       services.AddScoped<IUserRepository, UserRepository>();
       services.AddScoped<IUsersControllerDependencyBlock, UsersControllerDependencyBlock>();
 

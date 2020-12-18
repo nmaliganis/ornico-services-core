@@ -18,12 +18,22 @@ namespace ornico.core.services.Users
 
         public Task<UserUiModel> GetUserByLoginAsync(string login)
         {
-            return Task.Run(() => _autoMapper.Map<UserUiModel>(_userRepository.FindUserByLogin(login)));
+            return Task.Run(() => _autoMapper.Map<UserUiModel>(_userRepository.FindUserByUsername(login)));
+        }
+
+        public Task<UserForRetrievalUiModel> GetUserAuthJwtTokenByLoginAndPasswordAsync(string login, string password)
+        {
+          return Task.Run(() => _autoMapper.Map<UserForRetrievalUiModel>(_userRepository.FindUserByUsernameAndPasswordAsync(login, password)));
+        }
+
+        public Task<bool> SearchIfAnyPersonByEmailOrUsernameExistsAsync(string email, string username)
+        {
+          return Task.Run(() =>  _userRepository.FindUsersByEmailOrUsername(email, username).Count > 0);
         }
 
         public Task<UserForRetrievalUiModel> GetAuthUserByLoginAsync(string login)
         {
-            return Task.Run(() => _autoMapper.Map<UserForRetrievalUiModel>(_userRepository.FindUserByLogin(login)));
+            return Task.Run(() => _autoMapper.Map<UserForRetrievalUiModel>(_userRepository.FindUserByUsername(login)));
         }
     }
 }

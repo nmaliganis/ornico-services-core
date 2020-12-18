@@ -38,7 +38,7 @@ namespace ornico.core.repository.Mappings.Orders
         ;
 
       Map(x => x.CreatedDate)
-        .Column("createdDate")
+        .Column("createddate")
         .CustomType("DateTime")
         .Access.Property()
         .Generated.Never()

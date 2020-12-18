@@ -22,7 +22,7 @@ namespace ornico.core.repository.Mappings.Users
         ;
 
       Map(x => x.DisplayName)
-        .Column("displayName")
+        .Column("displayname")
         .CustomType("String")
         .Access.Property()
         .Generated.Never()
@@ -32,7 +32,7 @@ namespace ornico.core.repository.Mappings.Users
         ;
 
       Map(x => x.UserName)
-        .Column("userName")
+        .Column("username")
         .CustomType("String")
         .Unique()
         .Access.Property()
@@ -65,7 +65,7 @@ namespace ornico.core.repository.Mappings.Users
 
 
       Map(x => x.CreatedDate)
-        .Column("createdDate")
+        .Column("createddate")
         .CustomType("DateTime")
         .Access.Property()
         .Generated.Never()
@@ -73,7 +73,7 @@ namespace ornico.core.repository.Mappings.Users
         ;
 
       Map(x => x.CurrentDate)
-        .Column("currentDate")
+        .Column("currentdate")
         .CustomType("DateTime")
         .Access.Property()
         .Generated.Never()
