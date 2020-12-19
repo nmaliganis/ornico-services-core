@@ -224,9 +224,6 @@ namespace ornico.core.api
       app.UseAuthentication();
       app.UseAuthorization();
 
-
-      var serviceProvider = app.ApplicationServices;
-
       AutoMapper.Mapper.Initialize(cfg =>
       {
         cfg.AddProfile<UserEntityToUserUiAutoMapperProfile>();

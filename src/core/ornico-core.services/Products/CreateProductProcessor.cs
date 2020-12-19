@@ -108,7 +108,6 @@ namespace ornico.core.services.Products
           productToBeCreated.GetBrokenRulesAsString());
       }
     }
-
     private ProductUiModel ThrowExcIfProductWasNotBeMadePersistent(Product productToBeCreated)
     {
       var retrievedProduct = _productRepository.FindOneProductByMobile(productToBeCreated.Name);
