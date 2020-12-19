@@ -36,6 +36,13 @@ namespace ornico.core.model.Products
           this.Description = description;
           this.Price = price;
         }
+
+        public virtual void ModifyWith(string name, string description, double price)
+        {
+          this.Name = name;
+          this.Description = description;
+          this.Price = price;
+        }
     }
 }
 

@@ -23,7 +23,6 @@ namespace ornico.core.api.Controllers.API.V1
   [ResponseCache(Duration = 0, NoStore = true, VaryByHeader = "*")]
   [Route("api/v{version:apiVersion}/[controller]")]
   [ApiController]
-  //[Authorize]
   public class ProductsController : BaseController
   {
     private readonly IUrlHelper _urlHelper;
@@ -104,7 +103,7 @@ namespace ornico.core.api.Controllers.API.V1
         }
       }
 
-      return NotFound();
+      return NotFound("CREATION_FAILED");
     }
 
     /// <summary>
@@ -158,7 +157,37 @@ namespace ornico.core.api.Controllers.API.V1
     public async Task<IActionResult> PutProductRouteAsync(Guid id,
       [FromBody] ProductForModificationUiModel productForModificationUiModel)
     {
-      return BadRequest(new {errorMessage = "UNKNOWN_ERROR_UPDATE_PRODUCT"});
+      var modifiedProduct =
+        await _updateProductProcessor.UpdateProductAsync(id, productForModificationUiModel);
+
+      switch (modifiedProduct.Message)
+      {
+        case ("SUCCESS_MODIFICATION"):
+        {
+          Log.Information(
+            $"--Method:PutProductRouteAsync -- Message:Product_ACTIVATION_SUCCESSFULLY -- " +
+            $"Datetime:{DateTime.Now} -- ProductInfo:{id} ");
+          return Ok(modifiedProduct);
+        }
+        case ("ERROR_INVALID_PRODUCT_MODEL"):
+        {
+          return BadRequest(new {errorMessage = "ERROR_INVALID_PRODUCT_MODEL"});
+        }     
+        case ("ERROR_PRODUCT_NOT_EXIST"):
+        {
+          return BadRequest(new {errorMessage = "ERROR_PRODUCT_NOT_EXIST"});
+        }       
+        case ("ERROR_PRODUCT_NOT_MADE_PERSISTENT"):
+        {
+          return BadRequest(new {errorMessage = "ERROR_PRODUCT_NOT_MADE_PERSISTENT"});
+        }
+        case ("UNKNOWN_ERROR"):
+        {
+          return BadRequest(new {errorMessage = "ERROR_ACTIVATION_PRODUCT"});
+        }
+      }
+
+      return NotFound("MODIFICATION_FAILED");
     }
 
 
@@ -175,7 +204,8 @@ namespace ornico.core.api.Controllers.API.V1
     public async Task<IActionResult> DeleteHardProductRoot(Guid id)
     {
       var deletionStatus = await _deleteProductProcessor.DeleteProductAsync(id);
-      return deletionStatus ? (IActionResult) Ok("SUCCESS_CREATION") : BadRequest("ERROR_PRODUCT_DELETION");
+      //return deletionStatus ? (IActionResult) Ok("SUCCESS_CREATION") : BadRequest("ERROR_PRODUCT_DELETION");
+      return Ok();
     }
 
     #region Link Builder
