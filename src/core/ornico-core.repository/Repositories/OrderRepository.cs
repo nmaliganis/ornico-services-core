@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using NHibernate;
 using NHibernate.Criterion;
@@ -8,7 +7,6 @@ using ornico.common.infrastructure.Domain.Queries;
 using ornico.common.infrastructure.Paging;
 using ornico.core.repository.ContractRepositories;
 using ornico.core.repository.Repositories.Base;
-using Serilog;
 using Order = ornico.core.model.Orders.Order;
 
 namespace ornico.core.repository.Repositories
@@ -44,9 +42,9 @@ namespace ornico.core.repository.Repositories
       return
         (Order)
         Session.CreateCriteria(typeof(Order))
-          //.CreateAlias("User", "u", JoinType.InnerJoin)
+          .CreateAlias("User", "u", JoinType.InnerJoin)
           .Add(Expression.Eq("Id", idOrder))
-          //.Add(Expression.Eq("u.Id", idUser))
+          .Add(Expression.Eq("u.Id", idUser))
           .SetCacheable(true)
           .SetCacheMode(CacheMode.Normal)
           .SetFlushMode(FlushMode.Never)

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using ornico.common.infrastructure.Domain;
 using ornico.common.infrastructure.Domain.Queries;
 using ornico.core.model.Orders;

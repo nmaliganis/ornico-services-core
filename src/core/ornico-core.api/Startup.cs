@@ -235,6 +235,7 @@ namespace ornico.core.api
         cfg.AddProfile<ProductEntityToProductUiAutoMapperProfile>();
         cfg.AddProfile<ProductForCreationUiModelToProductEntityAutoMapperProfile>();
         cfg.AddProfile<ProductForModificationUiModelToProductEntityAutoMapperProfile>();
+        cfg.AddProfile<OrderItemEntityToProductRetrievalUiModelAutoMapperProfile>();
       });
 
       app.UseApiVersioning();

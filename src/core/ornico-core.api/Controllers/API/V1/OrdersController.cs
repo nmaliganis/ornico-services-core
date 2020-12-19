@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using ornico.common.dtos.DTOs.Orders;
 using ornico.common.dtos.Links;
 using ornico.common.infrastructure.Extensions;
@@ -136,20 +137,16 @@ namespace ornico.core.api.Controllers.API.V1
 
       var orderFromRepo = await _inquiryOrderProcessor.GetOrderByIdAsync(userAudit.Id, id);
 
-      if (orderFromRepo == null)
+      if (orderFromRepo != null)
+      {
+        orderFromRepo.Message = "CORRECT_RETRIEVAL";
+      }
+      else
       {
         return NotFound("ERROR_ORDER_NOT_EXIST");
       }
 
-      var order = Mapper.Map<OrderUiModel>(orderFromRepo);
-
-      var links = CreateLinksForOrder(id);
-
-      var linkedResourceToReturn = (IDictionary<string, object>) order;
-
-      linkedResourceToReturn.Add("links", links);
-
-      return Ok(linkedResourceToReturn);
+      return Ok(orderFromRepo);
     }
 
     /// <summary>
@@ -173,8 +170,8 @@ namespace ornico.core.api.Controllers.API.V1
         return BadRequest();
       }
 
-      //var ordersQueryable = 
-      //  //await _inquiryAllOrdersProcessor.GetOrdersAsync(ordersResourceParameters);
+      //var ordersQueryable =
+      ////await _inquiryAllOrdersProcessor.GetOrdersAsync(ordersResourceParameters);
 
       //var orders = Mapper.Map<IEnumerable<OrderUiModel>>(ordersQueryable);
 
@@ -203,91 +200,5 @@ namespace ornico.core.api.Controllers.API.V1
       //return Ok(orders.ShapeData(ordersResourceParameters.Fields));
       return Ok();
     }
-
-    #region Link Builder
-
-    private IEnumerable<LinkDto> CreateLinksForOrder(Guid id)
-    {
-      var links = new List<LinkDto>
-      {
-        new LinkDto(_urlHelper.Link("GetOrder", new {id = id}),
-          "self",
-          "GET")
-      };
-
-      return links;
-    }
-
-
-    private IEnumerable<LinkDto> CreateLinksForOrders(
-      OrdersResourceParameters ordersResourceParameters,
-      bool hasNext, bool hasPrevious)
-    {
-      var links = new List<LinkDto>
-      {
-        new LinkDto(CreateOrdersResourceUri(ordersResourceParameters,
-            ResourceUriType.Current)
-          , "self", "GET")
-      };
-
-      if (hasNext)
-      {
-        links.Add(
-          new LinkDto(CreateOrdersResourceUri(ordersResourceParameters,
-              ResourceUriType.NextPage),
-            "nextPage", "GET"));
-      }
-
-      if (hasPrevious)
-      {
-        links.Add(
-          new LinkDto(CreateOrdersResourceUri(ordersResourceParameters,
-              ResourceUriType.PreviousPage),
-            "previousPage", "GET"));
-      }
-
-      return links;
-    }
-
-    private string CreateOrdersResourceUri(OrdersResourceParameters ordersResourceParameters,
-      ResourceUriType type)
-    {
-      switch (type)
-      {
-        case ResourceUriType.PreviousPage:
-          return _urlHelper.Link("GetOrders",
-            new
-            {
-              fields = ordersResourceParameters.Fields,
-              orderBy = ordersResourceParameters.OrderBy,
-              searchQuery = ordersResourceParameters.SearchQuery,
-              pageNumber = ordersResourceParameters.PageIndex - 1,
-              pageSize = ordersResourceParameters.PageSize
-            });
-        case ResourceUriType.NextPage:
-          return _urlHelper.Link("GetOrders",
-            new
-            {
-              fields = ordersResourceParameters.Fields,
-              orderBy = ordersResourceParameters.OrderBy,
-              searchQuery = ordersResourceParameters.SearchQuery,
-              pageNumber = ordersResourceParameters.PageIndex + 1,
-              pageSize = ordersResourceParameters.PageSize
-            });
-        case ResourceUriType.Current:
-        default:
-          return _urlHelper.Link("GetOrders",
-            new
-            {
-              fields = ordersResourceParameters.Fields,
-              orderBy = ordersResourceParameters.OrderBy,
-              searchQuery = ordersResourceParameters.SearchQuery,
-              pageNumber = ordersResourceParameters.PageIndex,
-              pageSize = ordersResourceParameters.PageSize
-            });
-      }
-    }
-
-    #endregion
   }
 }
