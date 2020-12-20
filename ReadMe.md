@@ -6,5 +6,5 @@
 ER Diagram
 
 <p align="center">
-<img src="Dornico-services-core/src/core/ornico-core.api/0.Docs/schema.jpg"/>
+<img src="ornico-services-core/src/core/ornico-core.api/0.Docs/schema.jpg"/>
 </p>
