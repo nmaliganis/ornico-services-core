@@ -31,4 +31,4 @@ In the beginning the process of fragmenting the application into different compo
 # Questions 4
 How did you find the test overall? Did you have any issues or have difficulties completing?
 # Amswer 4
-It was nice. Thank you. No I have not any difficulties completing this. :)
+It was nice. Thank you. No I did not have any difficulties completing this. :)
