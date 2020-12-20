@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace magic.button.common.dtos.Vms.Users
+namespace ornico.common.dtos.DTOs.Users
 {
     public class UserActivationUiModel
     {

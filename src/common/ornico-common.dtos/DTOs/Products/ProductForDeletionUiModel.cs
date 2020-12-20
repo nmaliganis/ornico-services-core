@@ -1,18 +1,12 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using ornico.common.dtos.DTOs.Bases;
 
 namespace ornico.common.dtos.DTOs.Products
 {
-  public class ProductForDeletionUiModel
-  {
-    [Required]
-    [Editable(true)]
-    public Guid Id { get; set; }
-    [Required]
-    [Editable(true)]
-    public bool DeletionStatus { get; set; }
-    [Required]
-    [Editable(true)]
-    public string Message { get; set; }
-  }
+    public class ProductForDeletionUiModel :  IUiModel
+    {
+      public Guid Id { get; set; }
+      public string Message { get; set; }
+      public bool DeletionStatus { get; set; }
+    }
 }

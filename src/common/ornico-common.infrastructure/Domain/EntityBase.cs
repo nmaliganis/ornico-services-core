@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using magic.button.common.infrastructure.Domain;
 
 namespace ornico.common.infrastructure.Domain
 {

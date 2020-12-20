@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using magic.button.common.infrastructure.Exceptions.Domain;
+using ornico.common.infrastructure.Exceptions.Domain;
 
 namespace ornico.common.infrastructure.Domain
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace magic.button.common.infrastructure.Exceptions.Domain.Users
+namespace ornico.common.infrastructure.Exceptions.Domain.Users
 {
     public class UserDoesNotExistAfterMadePersistentException : Exception
     {
@@ -13,6 +13,6 @@ namespace magic.button.common.infrastructure.Exceptions.Domain.Users
             Login = login;
         }
 
-        public override string Message => $" User with Name: {Email} and Login:{Login} was not made Persistent!";
+        public override string Message => $" User with Name: {Email} and Name:{Login} was not made Persistent!";
     }
 }

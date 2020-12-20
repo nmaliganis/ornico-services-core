@@ -7,5 +7,11 @@ namespace ornico.common.dtos.DTOs.Products
         [Required(AllowEmptyStrings = false)]
         [Editable(true)]
         public string ProductName { get; set; }
+        [Required(AllowEmptyStrings = false)]
+        [Editable(true)]
+        public string ProductDescription { get; set; }
+        [Required]
+        [Editable(true)]
+        public double ProductPrice { get; set; }
     }
 }

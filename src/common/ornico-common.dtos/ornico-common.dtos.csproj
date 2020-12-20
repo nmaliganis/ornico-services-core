@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DTOs\Products\ProductForModificationUiModel.cs~RFa7009fe.TMP" />
     <None Remove="DTOs\Products\ProductUiModel.cs~RF2a58aae0.TMP" />
     <None Remove="Vms\Accounts\AccountWithNewPasswordModification.cs~RF13beeab7.TMP" />
     <None Remove="Vms\Devices\DeviceForActivationModel.cs~RFd9056f.TMP" />

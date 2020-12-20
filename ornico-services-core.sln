@@ -15,6 +15,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ornico-core.model", "src\co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ornico-core.contracts", "src\core\ornico-core.contracts\ornico-core.contracts.csproj", "{1EC1304D-E175-4561-A038-5E621652FB27}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ornico-core.repository", "src\core\ornico-core.repository\ornico-core.repository.csproj", "{9A93188E-347E-4913-B3BE-B5D3A09432E2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ornico-core.services", "src\core\ornico-core.services\ornico-core.services.csproj", "{2703B594-7E90-4CAF-80E4-F04EC43A9418}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ornico-core.api", "src\core\ornico-core.api\ornico-core.api.csproj", "{D29A7F2D-B95E-4BE9-9570-DFEA58A65555}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D5CBB573-556D-472C-B94C-FF75755C4A13}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ornico-test.FunctionalTests", "src\test\ornico-test.FunctionalTests\ornico-test.FunctionalTests.csproj", "{8ED46EE6-D310-456B-8BCB-5AD985597DE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +47,22 @@ Global
 		{1EC1304D-E175-4561-A038-5E621652FB27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EC1304D-E175-4561-A038-5E621652FB27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EC1304D-E175-4561-A038-5E621652FB27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A93188E-347E-4913-B3BE-B5D3A09432E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A93188E-347E-4913-B3BE-B5D3A09432E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A93188E-347E-4913-B3BE-B5D3A09432E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A93188E-347E-4913-B3BE-B5D3A09432E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2703B594-7E90-4CAF-80E4-F04EC43A9418}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2703B594-7E90-4CAF-80E4-F04EC43A9418}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2703B594-7E90-4CAF-80E4-F04EC43A9418}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2703B594-7E90-4CAF-80E4-F04EC43A9418}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D29A7F2D-B95E-4BE9-9570-DFEA58A65555}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D29A7F2D-B95E-4BE9-9570-DFEA58A65555}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D29A7F2D-B95E-4BE9-9570-DFEA58A65555}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D29A7F2D-B95E-4BE9-9570-DFEA58A65555}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ED46EE6-D310-456B-8BCB-5AD985597DE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ED46EE6-D310-456B-8BCB-5AD985597DE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ED46EE6-D310-456B-8BCB-5AD985597DE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ED46EE6-D310-456B-8BCB-5AD985597DE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +72,10 @@ Global
 		{1851670B-E333-46A8-AB19-9D51E40A1F9E} = {FAE8B85B-7A38-49FE-BAC2-52A65BAAC5CD}
 		{56F0F25B-D881-4235-AFA7-3FCF7C25474B} = {14E5ADE2-1753-4E19-9015-AEC6B8DB8C1F}
 		{1EC1304D-E175-4561-A038-5E621652FB27} = {14E5ADE2-1753-4E19-9015-AEC6B8DB8C1F}
+		{9A93188E-347E-4913-B3BE-B5D3A09432E2} = {14E5ADE2-1753-4E19-9015-AEC6B8DB8C1F}
+		{2703B594-7E90-4CAF-80E4-F04EC43A9418} = {14E5ADE2-1753-4E19-9015-AEC6B8DB8C1F}
+		{D29A7F2D-B95E-4BE9-9570-DFEA58A65555} = {14E5ADE2-1753-4E19-9015-AEC6B8DB8C1F}
+		{8ED46EE6-D310-456B-8BCB-5AD985597DE7} = {D5CBB573-556D-472C-B94C-FF75755C4A13}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {42AD2CBB-7113-4833-BA07-3544FCB20989}

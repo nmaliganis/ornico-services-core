@@ -1,6 +1,6 @@
 ﻿using ornico.common.infrastructure.Domain;
 
-namespace ornico.core.model.Employees
+namespace ornico.core.model.Orders
 {
     public class OrderBusinessRules
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace magic.button.common.infrastructure.Exceptions.Domain
+namespace ornico.common.infrastructure.Exceptions.Domain
 {
     public class ValueObjectIsInvalidException : Exception
     {

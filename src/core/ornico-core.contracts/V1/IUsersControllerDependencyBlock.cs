@@ -1,9 +1,10 @@
 ﻿using ornico.core.contracts.Users;
 
-namespace magic.button.cms.contracts.V1
+namespace ornico.core.contracts.V1
 {
-    public interface IUsersControllerDependencyBlock
-    {
-        IInquiryUserProcessor InquiryUserProcessor { get; }
-    }
+  public interface IUsersControllerDependencyBlock
+  {
+    ICreateUserProcessor CreateUserProcessor { get; }
+    IInquiryUserProcessor InquiryUserProcessor { get; }
+  }
 }

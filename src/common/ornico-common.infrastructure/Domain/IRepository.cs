@@ -1,6 +1,4 @@
-﻿using ornico.common.infrastructure.Domain;
-
-namespace magic.button.common.infrastructure.Domain
+﻿namespace ornico.common.infrastructure.Domain
 {
     public interface IRepository<T, TId> : IReadOnlyRepository<T, TId>
         where T : IAggregateRoot
