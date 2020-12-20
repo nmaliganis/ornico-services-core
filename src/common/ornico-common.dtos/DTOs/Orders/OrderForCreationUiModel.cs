@@ -8,10 +8,10 @@ namespace ornico.common.dtos.DTOs.Orders
     {
         [Required(AllowEmptyStrings = false)]
         [Editable(true)]
-        public IList<OrderCreationUIModel> Products { get; set; }
+        public IList<OrderCreationUiModel> Products { get; set; }
     }
 
-    public class OrderCreationUIModel
+    public class OrderCreationUiModel
     {
       [Required]
       [Editable(true)]

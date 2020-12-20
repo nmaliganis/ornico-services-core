@@ -6,7 +6,6 @@ namespace ornico.core.contracts.Orders
 {
     public interface ICreateOrderProcessor
     {
-        //Task<OrderUiModel> CreateOrderAsync(OrderForCreationUiModel newOrderUiModel);
-        Task<object> CreateOrderAsync(OrderForCreationUiModel orderForCreationUiModel);
+        Task<OrderUiModel> CreateOrderAsync(Guid idUser, OrderForCreationUiModel orderForCreationUiModel);
     }
 }

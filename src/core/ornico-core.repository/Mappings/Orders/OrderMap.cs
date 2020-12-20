@@ -57,7 +57,7 @@ namespace ornico.core.repository.Mappings.Orders
 
       HasMany<OrderItem>(x => x.Items)
         .Access.Property()
-        .AsSet()
+        //.AsSet()
         .Cascade.All()
         .LazyLoad()
         .Inverse()

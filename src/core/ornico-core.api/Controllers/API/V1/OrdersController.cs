@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using ornico.common.dtos.DTOs.Orders;
-using ornico.common.dtos.Links;
-using ornico.common.infrastructure.Extensions;
-using ornico.common.infrastructure.Helpers;
 using ornico.common.infrastructure.Helpers.ResourceParameters;
 using ornico.common.infrastructure.PropertyMappings;
 using ornico.common.infrastructure.PropertyMappings.TypeHelpers;
@@ -18,6 +12,7 @@ using ornico.core.contracts.Orders;
 using ornico.core.contracts.Users;
 using ornico.core.contracts.V1;
 using ornico.core.model.Orders;
+using Serilog;
 
 namespace ornico.core.api.Controllers.API.V1
 {
@@ -26,7 +21,7 @@ namespace ornico.core.api.Controllers.API.V1
   [ResponseCache(Duration = 0, NoStore = true, VaryByHeader = "*")]
   [Route("api/v{version:apiVersion}/[controller]")]
   [ApiController]
-  //[Authorize]
+  [Authorize]
   public class OrdersController : BaseController
   {
     private readonly IUrlHelper _urlHelper;
@@ -74,45 +69,31 @@ namespace ornico.core.api.Controllers.API.V1
     public async Task<IActionResult> PostOrderRouteAsync(
       [FromBody] OrderForCreationUiModel orderForCreationUiModel)
     {
-      var userAudit = await _inquiryUserProcessor.GetUserByUsernameAsync(GetEmailFromClaims());
+      var userAudit = await _inquiryUserProcessor.GetUserByUserIdAsync(GetUserIdFromClaims());
 
       if (userAudit == null)
-        return BadRequest();
+        return BadRequest("ERROR_ORDER_USER_NOT_EXIST");
 
       var newCreatedOrder =
-        await _createOrderProcessor.CreateOrderAsync(orderForCreationUiModel);
+        await _createOrderProcessor.CreateOrderAsync(GetUserIdFromClaims(), orderForCreationUiModel);
 
-      //switch (newCreatedOrder.Message)
-      //{
-      //  case ("SUCCESS_CREATION"):
-      //  {
-      //    Log.Information(
-      //      $"--Method:PostOrderRouteAsync -- Message:Order_CREATION_SUCCESSFULLY -- " +
-      //      $"Datetime:{DateTime.Now} -- OrderInfo:{orderForCreationUiModel.OrderName}");
-      //    return Created(nameof(PostOrderRouteAsync), newCreatedOrder);
-      //  }
-      //  case ("ERROR_ALREADY_EXISTS"):
-      //  {
-      //    Log.Error(
-      //      $"--Method:PostOrderRouteAsync -- Message:ERROR_Order_ALREADY_EXISTS -- " +
-      //      $"Datetime:{DateTime.Now} -- OrderInfo:{orderForCreationUiModel.OrderName}");
-      //    return BadRequest(new {errorMessage = "Order_ALREADY_EXISTS"});
-      //  }
-      //  case ("ERROR_ORDER_NOT_MADE_PERSISTENT"):
-      //  {
-      //    Log.Error(
-      //      $"--Method:PostOrderRouteAsync -- Message:ERROR_Order_NOT_MADE_PERSISTENT -- " +
-      //      $"Datetime:{DateTime.Now} -- OrderInfo:{orderForCreationUiModel.OrderName}");
-      //    return BadRequest(new {errorMessage = "ERROR_CREATION_NEW_Order"});
-      //  }
-      //  case ("UNKNOWN_ERROR"):
-      //  {
-      //    Log.Error(
-      //      $"--Method:PostOrderRouteAsync -- Message:ERROR_CREATION_NEW_Order -- " +
-      //      $"Datetime:{DateTime.Now} -- OrderInfo:{orderForCreationUiModel.OrderName}");
-      //    return BadRequest(new {errorMessage = "ERROR_CREATION_NEW_Order"});
-      //  }
-      //}
+      switch (newCreatedOrder.Message)
+      {
+        case ("SUCCESS_CREATION"):
+          {
+            Log.Information(
+              $"--Method:PostOrderRouteAsync -- Message:ORDER_CREATION_SUCCESSFULLY -- " +
+              $"Datetime:{DateTime.Now}");
+            return Created(nameof(PostOrderRouteAsync), newCreatedOrder);
+          }
+        case ("UNKNOWN_ERROR"):
+          {
+            Log.Error(
+              $"--Method:PostOrderRouteAsync -- Message:ERROR_CREATION_NEW_ORDER -- " +
+              $"Datetime:{DateTime.Now}");
+            return BadRequest(new { errorMessage = "ERROR_CREATION_NEW_ORDER" });
+          }
+      }
 
       return NotFound();
     }
@@ -127,7 +108,6 @@ namespace ornico.core.api.Controllers.API.V1
     /// <response code="404">Resource Not Found</response>
     /// <response code="500">Internal Server Error.</response>
     [HttpGet("{id}", Name = "GetOrder")]
-    [Authorize]
     public async Task<IActionResult> GetOrderAsync(Guid id)
     {
       var userAudit = await _inquiryUserProcessor.GetUserByUserIdAsync(GetUserIdFromClaims());
